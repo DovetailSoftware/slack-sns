@@ -50,14 +50,19 @@ exports.autoscaling = function (msg) {
 
 exports.plaintext = function (msg) {
   var text = msg.text;
+  var subject = '';
   var icon;
 
-  if (text.match(/(Writes|Reads): UP from/)) {
-    icon = ':point_up_2:';
-  } else if (text.match(/(Writes|Reads): DOWN from/)) {
-    icon = ':point_down:';
-  } else if (text.match(/Consumed (Write|Read) Capacity (\d+)% was greater than/)) {
-    icon = ':information_desk_person:';
+  if (msg.Subject) {
+    subject = msg.Subject;
+  }
+
+  if (subject.match(/ERROR/)) {
+    icon = ':scream:';
+  } else if (subject.match(/WARNING/)) {
+    icon = ':disappointed:';
+  } else if (subject.match(/INFO/)) {
+    icon = ':speech_balloon:';
   }
 
   return {
