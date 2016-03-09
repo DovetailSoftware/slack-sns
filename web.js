@@ -50,7 +50,7 @@ function subscribe (body, res, channel) {
 
 function message (body, res, channel) {
   console.log('Got', body.Type, 'via', body.TopicArn, 'timestamped', body.Timestamp,
-              'with', body.Message.length, 'bytes: ', body.Message);
+              'with', body.Message.length, 'bytes');
 
   var msg = {text: body.Message};
   try {
