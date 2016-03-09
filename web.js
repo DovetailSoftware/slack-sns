@@ -83,7 +83,7 @@ function message (body, res, channel) {
   }
 
   if (!opts.name && !opts.rich) {
-    # opts.name = body.Subject || 'Amazon SNS bridge';
+    // opts.name = body.Subject || 'Amazon SNS bridge';
     opts.name = 'Amazon SNS Bridge';
   }
 
