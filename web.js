@@ -88,7 +88,7 @@ function message (body, res, channel) {
   }
 
   if (body.Subject) {
-    opts.text = '*' + body.Subject + '*\r\n\r\n' + opts.text
+    opts.text = '*' + body.Subject + '*\r\n\r\n' + opts.text;
   }
 
   if (!opts.chan) {
