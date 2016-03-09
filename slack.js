@@ -2,10 +2,10 @@ var https = require('https');
 
 exports.send = function (opts) {
   var options = {
-    host: process.env.SLACK_TEAM + '.slack.com',
+    host: 'hooks.slack.com',
     port: 443,
     method: 'POST',
-    path: '/services/hooks/incoming-webhook?token=' + encodeURIComponent(process.env.SLACK_TOKEN),
+    path: '/services/' + process.env.SLACK_TOKEN,
     headers: {'Content-type': 'application/json'},
   };
 
@@ -15,7 +15,10 @@ exports.send = function (opts) {
     }).setEncoding('utf8');
   });
 
-  req.write(JSON.stringify(clean(opts)));
+  if(!opts.rich) {
+    opts = clean(opts);
+  }
+  req.write(JSON.stringify(opts));
   req.end();
 };
 
