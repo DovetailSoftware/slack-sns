@@ -87,6 +87,10 @@ function message (body, res, channel) {
     opts.name = 'Amazon SNS Bridge';
   }
 
+  if (body.Subject) {
+    opts.text = '*' + body.Subject + '*\r\n\r\n' + opts.text
+  }
+
   if (!opts.chan) {
     opts.chan = channel;
   }
