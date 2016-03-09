@@ -50,7 +50,7 @@ function subscribe (body, res, channel) {
 
 function message (body, res, channel) {
   console.log('Got', body.Type, 'via', body.TopicArn, 'timestamped', body.Timestamp,
-              'with', body.Message.length, 'bytes');
+              'with', body.Message.length, 'bytes: ', body.Message);
 
   var msg = {text: body.Message};
   try {
@@ -83,7 +83,8 @@ function message (body, res, channel) {
   }
 
   if (!opts.name && !opts.rich) {
-    opts.name = body.Subject || 'Amazon SNS bridge';
+    # opts.name = body.Subject || 'Amazon SNS bridge';
+    opts.name = 'Amazon SNS Bridge';
   }
 
   if (!opts.chan) {
